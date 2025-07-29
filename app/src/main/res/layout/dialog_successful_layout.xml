@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rect_top_rounded_white"
+            android:paddingVertical="@dimen/_11sdp">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rect_top_rounded_white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_view"
+            style="@style/laila_bold_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:gravity="center_horizontal"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:text="@string/done"
+            android:textColor="@color/black" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/noti_lottie_anim_view"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:visibility="visible"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/successful" />
+    </LinearLayout>
+    <!-- </androidx.constraintlayout.widget.ConstraintLayout>-->
+</layout>

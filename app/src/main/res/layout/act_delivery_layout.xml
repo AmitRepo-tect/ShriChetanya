@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                app:layout_scrollFlags="scroll|snap"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/laila_semibold_20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery"
+                        android:textColor="@color/black" />
+
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+            <TextView
+                style="@style/laila_medium_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/pod"
+                android:textAllCaps="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp">
+
+                <EditText
+                    android:id="@+id/barcode_et"
+                    style="@style/laila_medium_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/scanner"
+                    android:background="@drawable/rect_gray_border"
+                    android:editable="false"
+                    android:hint="@string/bar_code_val"
+                    android:padding="@dimen/_8sdp" />
+
+                <ImageView
+                    android:id="@+id/scanner"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:src="@drawable/ic_scanner"
+                    app:tint="@color/DarkGrayColor" />
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/container"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                style="@style/laila_medium_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/name"
+                android:textAllCaps="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_42sdp">
+
+                <EditText
+                    android:id="@+id/name_et"
+                    style="@style/laila_medium_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rect_gray_border"
+                    android:hint="@string/name"
+                    android:padding="@dimen/_8sdp" />
+
+            </RelativeLayout>
+
+            <TextView
+                style="@style/laila_medium_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/monbile_number"
+                android:textAllCaps="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_42sdp">
+
+                <EditText
+                    android:id="@+id/mob_number_et"
+                    style="@style/laila_medium_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:background="@drawable/rect_gray_border"
+                    android:hint="@string/monbile_number"
+                    android:padding="@dimen/_8sdp" />
+
+            </RelativeLayout>
+
+            <TextView
+                style="@style/laila_medium_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/address"
+                android:textAllCaps="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_42sdp">
+
+                <EditText
+                    android:id="@+id/address_et"
+                    style="@style/laila_medium_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rect_gray_border"
+                    android:hint="@string/address"
+                    android:padding="@dimen/_8sdp" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submit"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/rect_btn_bg_brown"
+                android:elevation="@dimen/_3sdp"
+                android:fontFamily="@font/laila_semibold"
+                android:paddingHorizontal="@dimen/_60sdp"
+                android:paddingVertical="@dimen/_9sdp"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textColor="@color/white1"
+                android:textSize="@dimen/_14ssp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

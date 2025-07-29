@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">ShriChetanya</string>
+    <string name="login">Login</string>
+    <string name="please_signin_to_continue">Please sign in to continue\n</string>
+    <string name="monbile_number">Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="forget_password">पासवर्ड भूल गए ?</string>
+    <string name="login_karen">लॉगिन करें</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="change_language">Change Language</string>
+    <string name="welcome_user">Welcome User</string>
+    <string name="new_booking">New Booking</string>
+    <string name="delivery">Delivery</string>
+    <string name="pod">POD</string>
+    <string name="bar_code_val">Barcode Value</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="submit">Submit</string>
+    <string name="source_address">Source Address</string>
+    <string name="pin">Pin</string>
+    <string name="dest_address">Destination Address</string>
+    <string name="document">Document</string>
+    <string name="non_document">Non Document</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_value">Item Value</string>
+    <string name="item_quantity">Item Quantity</string>
+    <string name="mod">Mod</string>
+    <string name="user_name">User Name</string>
+    <string name="done">Done</string>
+    <string name="logout">Logout</string>
+
+</resources>

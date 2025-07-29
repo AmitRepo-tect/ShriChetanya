@@ -1,0 +1,56 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/_115sdp"
+            android:layout_height="@dimen/_58sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:contentDescription="@string/app_name"
+            android:visibility="visible"
+            app:srcCompat="@mipmap/playstore" />
+
+        <ImageView
+            android:id="@+id/user_iv"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:background="@drawable/circle_yellow"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_13sdp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_profile" />
+        <!--  </LinearLayout>-->
+
+
+
+
+        <TextView
+            android:id="@+id/user_id_tv"
+            style="@style/laila_semibold_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:text="@string/welcome_user"
+            android:textAppearance="@style/DrawerTextViewStyle"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_color" />
+
+    </LinearLayout>
+</layout>

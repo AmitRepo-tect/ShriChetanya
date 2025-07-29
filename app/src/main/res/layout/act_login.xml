@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <View
+            android:id="@+id/top"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_84sdp"
+            android:backgroundTint="@color/brown_color"
+            android:background="@drawable/ic_login_top_new" />
+        <TextView
+            android:layout_below="@id/top"
+            android:id="@+id/login_tv"
+            style="@style/laila_semibold_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:text="@string/login"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/desc_tv"
+            style="@style/laila_medium_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_tv"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@string/please_signin_to_continue"
+            android:textColor="@color/text_color" />
+
+        <RelativeLayout
+            android:id="@+id/mobile_number_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/desc_tv"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/rect_gray_border"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/country_code_tv"
+                    style="@style/laila_medium_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+91"
+                    android:visibility="gone"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/phone_number_et"
+                    style="@style/laila_medium_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:autofillHints="@string/user_name"
+                    android:background="@null"
+                    android:hint="@string/user_name"
+                    android:textColorHint="@color/bottomifyPassiveColor"
+                    tools:ignore="TextFields" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/laila_semibold_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@color/white"
+                android:paddingHorizontal="@dimen/_2sdp"
+                android:text="@string/user_name"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/password_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobile_number_tv"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_12sdp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/rect_gray_border"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp">
+
+                <EditText
+                    android:id="@+id/password_et"
+                    style="@style/laila_medium_16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:autofillHints="@string/password"
+                    android:background="@null"
+                    android:hint="@string/password"
+                    android:inputType="text"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:textColorHint="@color/bottomifyPassiveColor"
+                    tools:ignore="TextFields" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/show_password_iv"
+                        android:layout_width="@dimen/_17sdp"
+                        android:layout_height="@dimen/_17sdp"
+                        android:src="@drawable/ic_show_password"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/hide_password_iv"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_hide_password" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/laila_semibold_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@color/white"
+                android:paddingHorizontal="@dimen/_2sdp"
+                android:text="@string/password"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/forget_password_tv"
+            style="@style/laila_medium_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_rl"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:visibility="invisible"
+            android:text="@string/forget_password"
+            android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/forget_password_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:background="@drawable/rect_btn_bg_brown"
+            android:elevation="@dimen/_3sdp"
+            android:fontFamily="@font/laila_semibold"
+            android:paddingHorizontal="@dimen/_60sdp"
+            android:paddingVertical="@dimen/_9sdp"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/white1"
+            android:textSize="@dimen/_14ssp" />
+
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:id="@+id/sign_up_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/_50sdp">
+
+            <TextView
+                style="@style/laila_medium_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/don_t_have_an_account"
+                android:textColor="@color/text_color" />
+
+            <TextView
+                style="@style/laila_medium_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:text="@string/sign_up"
+                android:textColor="@color/brown_color" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

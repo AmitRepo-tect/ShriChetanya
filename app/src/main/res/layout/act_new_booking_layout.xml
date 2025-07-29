@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:layout_scrollFlags="scroll|snap"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/laila_semibold_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_booking"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    style="@style/laila_medium_14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/pod"
+                    android:textAllCaps="true" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8sdp">
+
+                    <EditText
+                        android:id="@+id/barcode_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/scanner"
+                        android:background="@drawable/rect_gray_border"
+                        android:editable="false"
+                        android:hint="@string/bar_code_val"
+                        android:padding="@dimen/_8sdp" />
+
+                    <ImageView
+                        android:id="@+id/scanner"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:src="@drawable/ic_scanner"
+                        app:tint="@color/DarkGrayColor" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/container"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        style="@style/laila_medium_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/name"
+                        android:textAllCaps="true" />
+
+
+                    <EditText
+                        android:id="@+id/name_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/rect_gray_border"
+                        android:hint="@string/name"
+                        android:padding="@dimen/_8sdp" />
+
+
+                    <TextView
+                        style="@style/laila_medium_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/monbile_number"
+                        android:textAllCaps="true" />
+
+
+                    <EditText
+                        android:id="@+id/mob_number_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/rect_gray_border"
+                        android:hint="@string/monbile_number"
+                        android:inputType="number"
+                        android:padding="@dimen/_8sdp" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/document" />
+
+                        <RadioButton
+                            android:id="@+id/radioNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/non_document" />
+                    </RadioGroup>
+
+                    <TextView
+                        style="@style/laila_medium_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/item_name"
+                        android:textAllCaps="true" />
+
+
+                    <EditText
+                        android:id="@+id/item_name_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/rect_gray_border"
+                        android:hint="@string/item_name"
+                        android:padding="@dimen/_8sdp" />
+
+                    <TextView
+                        style="@style/laila_medium_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/item_value"
+                        android:textAllCaps="true" />
+
+
+                    <EditText
+                        android:id="@+id/item_value_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/rect_gray_border"
+                        android:hint="@string/item_value"
+                        android:inputType="number"
+                        android:padding="@dimen/_8sdp" />
+
+                    <TextView
+                        style="@style/laila_medium_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/item_quantity"
+                        android:textAllCaps="true" />
+
+
+                    <EditText
+                        android:id="@+id/item_quantity_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/rect_gray_border"
+                        android:hint="@string/item_quantity"
+                        android:inputType="number"
+                        android:padding="@dimen/_8sdp" />
+
+                    <TextView
+                        style="@style/laila_medium_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/mod"
+                        android:textAllCaps="true" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/custom_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/custom_spinner_background"
+                        android:dropDownWidth="@dimen/_280sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:spinnerMode="dropdown"
+                        app:popupTheme="@style/SpinnerPopupTheme" />
+
+                    <TextView
+                        style="@style/laila_medium_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/source_address"
+                        android:textAllCaps="true" />
+
+
+                    <EditText
+                        android:id="@+id/source_address_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/rect_gray_border"
+                        android:hint="@string/address"
+                        android:padding="@dimen/_8sdp" />
+
+
+                    <EditText
+                        android:id="@+id/source_pin_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/rect_gray_border"
+                        android:hint="@string/pin"
+                        android:inputType="number"
+                        android:padding="@dimen/_8sdp" />
+
+                    <TextView
+                        style="@style/laila_medium_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/dest_address"
+                        android:textAllCaps="true" />
+
+
+                    <EditText
+                        android:id="@+id/dest_address_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/rect_gray_border"
+                        android:hint="@string/address"
+                        android:padding="@dimen/_8sdp" />
+
+
+                    <EditText
+                        android:id="@+id/dest_pin_et"
+                        style="@style/laila_medium_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/rect_gray_border"
+                        android:hint="@string/pin"
+                        android:inputType="number"
+                        android:padding="@dimen/_8sdp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/submit"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:background="@drawable/rect_btn_bg_brown"
+                        android:elevation="@dimen/_3sdp"
+                        android:fontFamily="@font/laila_semibold"
+                        android:paddingHorizontal="@dimen/_60sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/submit"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white1"
+                        android:textSize="@dimen/_14ssp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:textAllCaps="false"
+            android:id="@+id/camera_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/brown_color"
+            android:text="Take Photo" />
+        <TextView
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:text="OR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:id="@+id/gallery_btn"
+            android:layout_width="wrap_content"
+            android:backgroundTint="@color/brown_color"
+            android:layout_height="wrap_content"
+            android:text="Choose from Gallery" />
+    </LinearLayout>
+</layout>
