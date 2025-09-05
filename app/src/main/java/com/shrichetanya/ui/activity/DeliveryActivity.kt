@@ -3,6 +3,8 @@ package com.shrichetanya.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
@@ -33,6 +35,24 @@ class DeliveryActivity : BaseActivity(), OnClickListener {
     private fun setListeners() {
         binding.scanner.setOnClickListener(this)
         binding.submit.setOnClickListener(this)
+        binding.backBtn.setOnClickListener(this)
+        binding.barcodeEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Called before the text is changed
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+               if(count>0){
+                   binding.container.visibility = View.VISIBLE
+               }else{
+                   binding.container.visibility = View.GONE
+               }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Called after the text is changed
+            }
+        })
     }
 
     override fun onClick(v: View) {
@@ -41,9 +61,11 @@ class DeliveryActivity : BaseActivity(), OnClickListener {
                 val intent = Intent(this, BarcodeScannerActivity::class.java)
                 launcher.launch(intent)
             }
-
             R.id.submit -> {
                 deliverBooking()
+            }
+            R.id.back_btn -> {
+                finish()
             }
         }
     }
@@ -54,7 +76,6 @@ class DeliveryActivity : BaseActivity(), OnClickListener {
                 val data = result.data
                 val resultText = data?.getStringExtra(IntentConstant.BARCODE)
                 binding.barcodeEt.setText(resultText.toString())
-                binding.container.visibility = View.VISIBLE
             }
         }
 
@@ -79,6 +100,7 @@ class DeliveryActivity : BaseActivity(), OnClickListener {
                     response.data?.let {
                         if (it.result.code == 1) {
                             showCustomDialog(it.bookingId)
+                            clearField()
                         } else {
                             Toast.makeText(
                                 this@DeliveryActivity,
@@ -118,5 +140,11 @@ class DeliveryActivity : BaseActivity(), OnClickListener {
             return false
         }
         return true
+    }
+    fun clearField(){
+        binding.barcodeEt.text?.clear()
+        binding.nameEt.text?.clear()
+        binding.mobNumberEt.text?.clear()
+        binding.addressEt.text?.clear()
     }
 }

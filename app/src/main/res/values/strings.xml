@@ -25,9 +25,10 @@
     <string name="item_name">Item Name</string>
     <string name="item_value">Item Value</string>
     <string name="item_quantity">Item Quantity</string>
-    <string name="mod">Mod</string>
+    <string name="mod">Mode</string>
     <string name="user_name">User Name</string>
     <string name="done">Done</string>
     <string name="logout">Logout</string>
+    <string name="type_here">Type Here</string>
 
 </resources>

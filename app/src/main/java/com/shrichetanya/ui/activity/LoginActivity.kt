@@ -2,6 +2,8 @@ package com.shrichetanya.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.WindowManager
@@ -39,21 +41,43 @@ class LoginActivity : BaseActivity(), OnClickListener {
 
     private fun setListeners() {
         binding.loginBtn.setOnClickListener(this)
+        binding.showPasswordIv.setOnClickListener(this)
+        binding.hidePasswordIv.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.login_btn -> {
-                if(validate()){
+                if (validate()) {
                     login()
                 }
             }
+
+            R.id.hide_password_iv -> {
+                binding.showPasswordIv.visibility = View.VISIBLE
+                binding.hidePasswordIv.visibility = View.GONE
+                binding.passwordEt.transformationMethod =
+                    HideReturnsTransformationMethod.getInstance()
+            }
+
+            R.id.show_password_iv -> {
+                binding.showPasswordIv.visibility = View.GONE
+                binding.hidePasswordIv.visibility = View.VISIBLE
+                binding.passwordEt.transformationMethod =
+                    PasswordTransformationMethod.getInstance()
+            }
+
             else -> println("x is something else")
         }
     }
 
     private fun login() {
-        viewModel.login(LoginRequest(binding.phoneNumberEt.text.toString(), binding.passwordEt.text.toString()) )
+        viewModel.login(
+            LoginRequest(
+                binding.phoneNumberEt.text.toString(),
+                binding.passwordEt.text.toString()
+            )
+        )
     }
 
     private fun validate(): Boolean {
@@ -68,23 +92,41 @@ class LoginActivity : BaseActivity(), OnClickListener {
         }
         return true
     }
+
     private fun addObservers() {
 
         viewModel.loginResponse.observe(this) { response ->
             when (response) {
                 is NetworkResult.Success -> {
-                   hideProgressbar()
+                    hideProgressbar()
                     response.data?.let {
-                        Cutil.saveStringInSP(this,SharePreferenceConstant.USER_ID,it.userId.toString())
-                        Cutil.saveStringInSP(this,SharePreferenceConstant.USER_NAME, it.name)
-                        Cutil.saveStringInSP(this,SharePreferenceConstant.USER_PASSWORD,binding.passwordEt.text.toString())
-                        Cutil.saveStringInSP(this,SharePreferenceConstant.USER_EMAIL, it.emailId)
-                        Cutil.saveBooleanInSP(this,SharePreferenceConstant.IS_LOGGED_IN,true)
-                        Cutil.saveStringInSP(this,SharePreferenceConstant.AUTH_KEY,it.authKey)
+                        if (it.result.code == 1) {
+                            Cutil.saveStringInSP(
+                                this,
+                                SharePreferenceConstant.USER_ID,
+                                it.userId.toString()
+                            )
+                            Cutil.saveStringInSP(this, SharePreferenceConstant.USER_NAME, it.name)
+                            Cutil.saveStringInSP(
+                                this,
+                                SharePreferenceConstant.USER_PASSWORD,
+                                binding.passwordEt.text.toString()
+                            )
+                            Cutil.saveStringInSP(
+                                this,
+                                SharePreferenceConstant.USER_EMAIL,
+                                it.emailId
+                            )
+                            Cutil.saveBooleanInSP(this, SharePreferenceConstant.IS_LOGGED_IN, true)
+                            Cutil.saveStringInSP(this, SharePreferenceConstant.AUTH_KEY, it.authKey)
 
-                        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this@LoginActivity, it.result.msg, Toast.LENGTH_SHORT)
+                                .show()
+                        }
                     }
                 }
 

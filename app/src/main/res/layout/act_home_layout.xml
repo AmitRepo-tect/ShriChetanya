@@ -42,6 +42,7 @@
                     </RelativeLayout>
                 </androidx.appcompat.widget.Toolbar>
                 <androidx.appcompat.widget.AppCompatSpinner
+                    android:visibility="gone"
                     android:id="@+id/custom_spinner"
                     android:layout_marginHorizontal="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_30sdp"
@@ -53,6 +54,30 @@
                     android:background="@drawable/custom_spinner_background"
                     android:paddingEnd="40dp" />
 
+                <!--<AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter city"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/rect_gray_border"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:completionThreshold="1"
+                    android:inputType="text"
+                    android:dropDownHeight="wrap_content"
+                    android:dropDownVerticalOffset="8dp"/>-->
+                <com.shrichetanya.ui.customview.PersistentAutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/type_here"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/rect_gray_border"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
 
             </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.shrichetanya.ui.activity
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -15,6 +17,7 @@ import com.shrichetanya.utils.NetworkResult
 import com.shrichetanya.R
 import com.shrichetanya.databinding.ActHomeLayoutBinding
 import com.shrichetanya.model.Client
+import com.shrichetanya.ui.adapter.AutoCompleteAdapter
 import com.shrichetanya.ui.adapter.CustomSpinnerAdapterNew
 import com.shrichetanya.utils.IntentConstant
 import com.shrichetanya.viewmodel.HomeViewModel
@@ -61,7 +64,6 @@ class HomeActivity : BaseActivity(), OnClickListener {
                 R.id.logout->{
                     showLogoutDialog()
                     binding.drawerLayout.closeDrawer(GravityCompat.START, true)
-
                 }
             }
             menuItem.isChecked = !menuItem.isChecked
@@ -97,6 +99,7 @@ class HomeActivity : BaseActivity(), OnClickListener {
                 if (position!=0) {
                     val intent = Intent(this@HomeActivity, NewBookingActivity::class.java)
                     intent.putExtra(IntentConstant.CLIENT_ID, list[position].id)
+                    intent.putExtra(IntentConstant.CLIENT_NAME, list[position].name)
                     startActivity(intent)
                 }
                 boolval = true
@@ -115,9 +118,10 @@ class HomeActivity : BaseActivity(), OnClickListener {
                 is NetworkResult.Success -> {
                     hideProgressbar()
                     response.data?.let {
-                        client.add(0,Client(0,"Select Client"))
+                       /* client.add(0,Client(0,"Select Client"))
                         client.addAll(it.client)
-                        setSpinnerData(client)
+                        setSpinnerData(client)*/
+                        setAutoCompleteAdapter(it.client)
                     }
                 }
 
@@ -135,5 +139,34 @@ class HomeActivity : BaseActivity(), OnClickListener {
 
     fun dpToPx(dp: Int): Int {
         return (dp * Resources.getSystem().displayMetrics.density).toInt()
+    }
+    private fun setAutoCompleteAdapter(list: List<Client>){
+        val adapter = AutoCompleteAdapter(this, list)
+        binding.autoCompleteTextView.setAdapter(adapter)
+        binding.autoCompleteTextView.threshold = 0 // start suggesting after 1 char
+        binding.autoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
+            val name = adapter.getItem(position).name ?: ""
+            val id = adapter.getItem(position).id ?: ""
+            binding.autoCompleteTextView.setText(name, false)
+            binding.autoCompleteTextView.setSelection(name.length)
+            val intent = Intent(this@HomeActivity, NewBookingActivity::class.java)
+            intent.putExtra(IntentConstant.CLIENT_ID, id)
+            intent.putExtra(IntentConstant.CLIENT_NAME, name)
+            startActivity(intent)
+        }
+        binding.autoCompleteTextView.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) binding.autoCompleteTextView.showDropDown()
+        }
+
+        // Show dropdown on click
+        binding.autoCompleteTextView.setOnClickListener {
+            binding.autoCompleteTextView.showDropDown()
+        }
+        binding.autoCompleteTextView.requestFocus()
+        binding.autoCompleteTextView.showDropDown()
+        binding.autoCompleteTextView.post {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(binding.autoCompleteTextView, InputMethodManager.SHOW_IMPLICIT)
+        }
     }
 }

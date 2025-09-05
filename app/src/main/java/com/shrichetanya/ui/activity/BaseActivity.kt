@@ -96,7 +96,7 @@ open class BaseActivity : AppCompatActivity() {
             val intent = Intent(this@BaseActivity, UploadFileActivity::class.java)
             intent.putExtra(IntentConstant.BOOKING_ID,bookingId)
             startActivity(intent)
-            finish()
+            dialog.dismiss()
         }
 
         noButton.setOnClickListener {
@@ -150,16 +150,18 @@ open class BaseActivity : AppCompatActivity() {
         return dialog
     }
 
-    fun showSuccesfulDialog() {
+    fun showSuccesfulDialog(isFinishActivity:Boolean=false) {
         val dialog = showSaveSuccessfulDialog()
-        dismissDialogAutomatically(dialog)
+        dismissDialogAutomatically(dialog,isFinishActivity)
     }
 
-    private fun dismissDialogAutomatically(dialog: Dialog) {
+    private fun dismissDialogAutomatically(dialog: Dialog,isFinishActivity:Boolean) {
         Handler(mainLooper).postDelayed({
             if (dialog.isShowing) {
                 dialog.dismiss()
-                finish()
+                if(isFinishActivity){
+                    finish()
+                }
             }
         }, 3000)
     }

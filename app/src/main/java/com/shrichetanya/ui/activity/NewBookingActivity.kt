@@ -3,6 +3,8 @@ package com.shrichetanya.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.AdapterView
@@ -23,8 +25,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class NewBookingActivity : BaseActivity(), OnClickListener {
     lateinit var binding: ActNewBookingLayoutBinding
     private val viewModel by viewModels<HomeViewModel>()
-    private var clinetId: Int = -1
+    private var clientId: Int = -1
+    private var clientName: String? = ""
     lateinit var selectedMod:String
+    lateinit var selectedName:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActNewBookingLayoutBinding.inflate(layoutInflater)
@@ -32,17 +36,38 @@ class NewBookingActivity : BaseActivity(), OnClickListener {
         setListeners()
         addObservers()
         getDataFromIntent()
-        setSpinnerData()
+        setModeSpinnerData()
+        setNameSpinnerData()
         setStatusBarColor(R.color.white)
     }
 
     private fun getDataFromIntent() {
-        clinetId = intent.getIntExtra(IntentConstant.CLIENT_ID, -1) // Default -1 if not found
+        clientId = intent.getIntExtra(IntentConstant.CLIENT_ID, -1) // Default -1 if not found
+        clientName= intent.getStringExtra(IntentConstant.CLIENT_NAME)
+        binding.title.text=clientName
     }
 
     private fun setListeners() {
         binding.scanner.setOnClickListener(this)
         binding.submit.setOnClickListener(this)
+        binding.backBtn.setOnClickListener(this)
+        binding.barcodeEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Called before the text is changed
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(count>0){
+                    binding.container.visibility = View.VISIBLE
+                }else{
+                    binding.container.visibility = View.GONE
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Called after the text is changed
+            }
+        })
     }
 
     override fun onClick(v: View) {
@@ -55,6 +80,9 @@ class NewBookingActivity : BaseActivity(), OnClickListener {
             R.id.submit -> {
                 saveBooking()
             }
+            R.id.back_btn->{
+                finish()
+            }
         }
     }
 
@@ -64,7 +92,6 @@ class NewBookingActivity : BaseActivity(), OnClickListener {
                 val data = result.data
                 val resultText = data?.getStringExtra(IntentConstant.BARCODE)
                 binding.barcodeEt.setText(resultText.toString())
-                binding.container.visibility=View.VISIBLE
             }
         }
 
@@ -72,11 +99,11 @@ class NewBookingActivity : BaseActivity(), OnClickListener {
         if (validate()) {
             viewModel.saveBooking(
                 BookingRequest(userId = Cutil.getStringFromSP(this, IntentConstant.USER_ID),
-                clinetId = clinetId.toString(),
+                clinetId = clientId.toString(),
                 podNo = binding.barcodeEt.text.toString(),
                 isDocument = binding.radioYes.isChecked,
                 mode = selectedMod,
-                itemName = binding.itemNameEt.text.toString(),
+                itemName = selectedName,
                 itemQuantity = binding.itemQuantityEt.text.toString(),
                 itemValue = binding.itemValueEt.text.toString(),
                 sourceAddress = binding.sourceAddressEt.text.toString(),
@@ -99,6 +126,7 @@ class NewBookingActivity : BaseActivity(), OnClickListener {
                     response.data?.let {
                         if (it.result.code == 1) {
                             showCustomDialog(it.bookingId)
+                            clearField()
                         }else{
                             Toast.makeText(
                                 this@NewBookingActivity,
@@ -149,10 +177,10 @@ class NewBookingActivity : BaseActivity(), OnClickListener {
             Toast.makeText(this, "Please enter Pin", Toast.LENGTH_SHORT).show()
             return false
         }
-        if (binding.itemNameEt.text.isEmpty()) {
+        /*if (binding.itemNameEt.text.isEmpty()) {
             Toast.makeText(this, "Please enter Item Name", Toast.LENGTH_SHORT).show()
             return false
-        }
+        }*/
         if (binding.itemValueEt.text.isEmpty()) {
             Toast.makeText(this, "Please enter Item Value", Toast.LENGTH_SHORT).show()
             return false
@@ -164,15 +192,11 @@ class NewBookingActivity : BaseActivity(), OnClickListener {
 
         return true
     }
-    private fun setSpinnerData(){
+    private fun setModeSpinnerData(){
         val options = listOf("Surface","Express","Air")
-
-        // Adapter for Spinner
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, options)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.customSpinner.adapter = adapter
-
-        // Handle selection
         binding.customSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -180,7 +204,6 @@ class NewBookingActivity : BaseActivity(), OnClickListener {
                 position: Int,
                 id: Long
             ) {
-
                 selectedMod=options[position]
             }
 
@@ -188,5 +211,48 @@ class NewBookingActivity : BaseActivity(), OnClickListener {
                 // do nothing
             }
         }
+    }
+    private fun setNameSpinnerData(){
+        val options = listOf("ARTIFICIAL JEWELLERY","BAGS","BOOKS",
+            "CLOTHING","LUGGAGE","PERFUMES","PHOTO FRAME","RAKHI",
+            "SHOES","SLIPPERS","TOYS","AUTO/MACHINE PARTS",
+            "BATTERY","ELECTRIC ITEMS","BIO SAMPLE","CHEQUE BOOKS",
+            "CHOCOLATES","CARD/CREDIT/DEBIT","FOOD ITEMS","FRUITS",
+            "MASKS","MEDICAL EQUIPMENT","MEDICINE","PASSPORT",
+            "SURGICAL PARTS","SWEETS","VACCINES","BROCHURES",
+            "PAPERS","PROMOTIONAL MATERIAL (PAPERS)",
+            "STATIONERY","CAMERA","CHARGER","COMPUTER PARTS",
+            "DESKTOP","ELECTRIC ITEMS","HOME APPLIANCES","LAPTOP",
+            "TV/LED/LCD","MOBILE","MONITOR","UPS","FURNITURE","GLASS ITEMS","PLASTIC ITEMS","OTHERS",
+        )
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, options)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.nameSpinner.adapter = adapter
+        binding.nameSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                selectedName=options[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // do nothing
+            }
+        }
+    }
+    fun clearField(){
+        binding.barcodeEt.text?.clear()
+        binding.nameEt.text?.clear()
+        binding.mobNumberEt.text?.clear()
+        binding.sourceAddressEt.text?.clear()
+        binding.sourcePinEt.text?.clear()
+        binding.destAddressEt.text?.clear()
+        binding.destPinEt.text?.clear()
+       // binding.itemNameEt.text?.clear()
+        binding.itemValueEt.text?.clear()
+        binding.itemQuantityEt.text?.clear()
     }
 }

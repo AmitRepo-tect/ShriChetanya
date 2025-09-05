@@ -9,15 +9,22 @@
         android:orientation="vertical"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/_115sdp"
-            android:layout_height="@dimen/_58sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_6sdp"
-            android:contentDescription="@string/app_name"
-            android:visibility="visible"
-            app:srcCompat="@mipmap/playstore" />
+        <androidx.cardview.widget.CardView
+            android:elevation="0dp"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:contentDescription="@string/app_name"
+                android:visibility="visible"
+                app:srcCompat="@mipmap/app_logo" />
+        </androidx.cardview.widget.CardView>
 
         <ImageView
             android:id="@+id/user_iv"
@@ -31,8 +38,6 @@
             android:visibility="gone"
             app:srcCompat="@drawable/ic_profile" />
         <!--  </LinearLayout>-->
-
-
 
 
         <TextView

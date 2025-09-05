@@ -7,23 +7,41 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
             app:layout_scrollFlags="scroll|snap"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:contentInsetStart="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetRight="0dp">
             <RelativeLayout
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
+                <ImageView
+                    android:id="@+id/back_btn"
+                    android:layout_marginStart="@dimen/_4ssp"
+                    android:src="@drawable/ic_back_button"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"/>
                 <TextView
+                    android:layout_toEndOf="@+id/back_btn"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:id="@+id/title"
+                    android:singleLine="true"
+                    android:layout_centerVertical="true"
+                    android:maxLines="1"
                     style="@style/laila_semibold_20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/new_booking"
+                    android:includeFontPadding="false"
                     android:textColor="@color/black" />
 
             </RelativeLayout>
@@ -60,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toStartOf="@+id/scanner"
                         android:background="@drawable/rect_gray_border"
-                        android:editable="false"
+                        android:editable="true"
                         android:hint="@string/bar_code_val"
                         android:padding="@dimen/_8sdp" />
 
@@ -157,7 +175,7 @@
                         android:textAllCaps="true" />
 
 
-                    <EditText
+                    <!--<EditText
                         android:id="@+id/item_name_et"
                         style="@style/laila_medium_16"
                         android:layout_width="match_parent"
@@ -166,7 +184,18 @@
                         android:layout_marginEnd="@dimen/_42sdp"
                         android:background="@drawable/rect_gray_border"
                         android:hint="@string/item_name"
-                        android:padding="@dimen/_8sdp" />
+                        android:padding="@dimen/_8sdp" />-->
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/name_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_42sdp"
+                        android:background="@drawable/custom_spinner_background"
+                        android:dropDownWidth="@dimen/_280sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:spinnerMode="dropdown"
+                        app:popupTheme="@style/SpinnerPopupTheme" />
 
                     <TextView
                         style="@style/laila_medium_14"

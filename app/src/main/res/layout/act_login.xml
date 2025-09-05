@@ -116,7 +116,7 @@
                     android:autofillHints="@string/password"
                     android:background="@null"
                     android:hint="@string/password"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:paddingVertical="@dimen/_10sdp"
                     android:textColorHint="@color/bottomifyPassiveColor"
                     tools:ignore="TextFields" />
